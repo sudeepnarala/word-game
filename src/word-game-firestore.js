@@ -18,3 +18,10 @@ const app = initializeApp(firebaseConfig);
 
 // Initialize Cloud Firestore and get a reference to the service
 export const db = getFirestore(app);
+
+export const Pages = {
+    name: 0,
+    room_creation: 1,
+    room_waiting: 2,
+    game: 3,
+}
