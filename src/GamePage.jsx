@@ -1,7 +1,7 @@
-import {Button, Grid, Typography} from "@mui/material";
+import {Button, Card, Grid, Typography} from "@mui/material";
 import {db, Pages} from './word-game-firestore';
 import { doc, setDoc, onSnapshot, query, collection } from "firebase/firestore";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 // All english words
 import words from "an-array-of-english-words"
 import * as PropTypes from "prop-types";
@@ -11,6 +11,8 @@ import {unstable_batchedUpdates} from "react-dom";
 let pdf = {"a": 4, "b": 2, "c": 2, "d": 2, "e": 3, "f": 2, "g": 2, "h": 3, "i": 3, "j": 2, "k": 2, "l": 2, "m": 2, "n": 2, "o": 2, "p": 2, "q": 1, "r": 2, "s": 3, "t": 3, "u": 4, "v": 2, "w": 2, "x": 1, "y": 2, "z": 1}
 
 let LETTERS = "abcdefghijklmnopqrstuvwxyz";
+
+let NUM_INITIAL = 20;
 
 // TODO: Host can end game
 // TODO: We need to / we are going to assume sync'd state between clients
@@ -22,17 +24,20 @@ export default function GamePage(props) {
     let [gridItems, setGridItems] = useState([])
     let [handledIdx, setHandledIdx] = useState([])
 
-    function set_initial_letters(new_letters) {
-        let idx=0;
-        new_letters.forEach((letter)=>
-            {
-                setDoc(doc(db, "games", props.roomID, "letters", String(idx)), {
-                    "letter": letter
-                })
-                idx += 1
-            }
-        )
+    function set_initial_letters() {
+        for(let i=0; i<NUM_INITIAL; i++) {
+            const letter = LETTERS[Math.floor(Math.random()*LETTERS.length)]
+            setDoc(doc(db, "games", props.roomID, "letters", String(i)), {
+                "letter": letter
+            })
+        }
     }
+    useEffect(() => {
+        if(props.host)
+            set_initial_letters();
+    })
+
+
 
 
     function handle_new_letters(doc, local_handled) {
@@ -55,14 +60,6 @@ export default function GamePage(props) {
         })
     }
 
-    if(gridItems.length===0 && props.host) {
-        let grid_items = []
-        for(let i=0; i<20; i++) {
-            grid_items.push(LETTERS[Math.floor(Math.random()*LETTERS.length)])
-        }
-        set_initial_letters(grid_items)
-        // setInterval(add_new_letter_host, 3000)
-    }
 
 
     const letters_query = query(collection(db, "games", props.roomID, "letters"))
@@ -91,7 +88,7 @@ export default function GamePage(props) {
             <Grid container spacing={2}>
                 {gridItems.map((item)=>
                     <Grid item xs={1}>
-                        <Button variant={"outlined"} >{item}</Button>
+                        <Card raised={true} square={true}>{item}</Card>
                     </Grid>
                 )}
             </Grid>
