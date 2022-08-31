@@ -13,11 +13,12 @@
   color: white;
 }
 
-.name-page-entry {
+.name-page-container {
   padding-top: 2vh;
   padding-left: 2vh;
   float: left;
   height: 100%;
+  display: table;
 }
 
 .room-elements {
@@ -30,4 +31,43 @@
   text-align: left;
   padding-top: 2vh;
   padding-left: 2vh;
+}
+
+.total-canvas {
+  height: 640px;
+  width: 640px;
+}
+
+/*there will always be 40/(4+1) = 8 per row --> 40 = width of grid, 4=width, 1=spacing*/
+.letter-container {
+  height: 4vh;
+  width: 4vw;
+}
+
+.game-page-grid-container {
+  display: grid;
+  grid-template-columns: [leftmost] 40vw [middle1] 20vw [middle2] 40vw [end];
+  grid-template-rows: [topmost] 60vh [middle] 40vh [end];
+  justify-items: left; /* Moves all elements to top left of the box they are placed in */
+}
+
+.board-item {
+  grid-column-start: leftmost;
+  grid-row-start: topmost;
+  grid-column-end: middle1;
+  grid-row-end: middle;
+}
+
+.scores-item {
+  grid-column-start: middle2;
+  grid-row-start: topmost;
+  grid-column-end: end;
+  grid-row-end: end;
+}
+
+.word-entry-item {
+  grid-column-start: leftmost;
+  grid-row-start: middle;
+  grid-column-end: middle1;
+  grid-row-end: end;
 }

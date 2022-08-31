@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import PageMuxer from './PageMuxer';
+import PageMuxer from './control/PageMuxer';
 
 
 // TODO: Remove inactivate players (maybe we can't do that for now)

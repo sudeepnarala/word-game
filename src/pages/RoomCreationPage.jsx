@@ -1,5 +1,5 @@
 import {Button, TextField} from "@mui/material";
-import {Pages} from "./word-game-firestore";
+import {Pages} from "../word-game-firestore";
 import {unstable_batchedUpdates} from "react-dom";
 
 const ROOM_POSSIBLE_CHARS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -19,7 +19,6 @@ export default function RoomCreationPage(props) {
             props.setRoomID(room_id)
             props.setPage(Pages.room_waiting)
         })
-
     }
     return (
         <div className={"name-page-entry"}>
