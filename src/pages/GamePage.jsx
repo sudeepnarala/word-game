@@ -8,7 +8,7 @@ import Board from "../components/board";
 import Scores from "../components/scores";
 import GameStream from "../components/game_stream";
 
-let letters = "abcdefghijklmnopqrstuvwxyz"
+let letters = "aaaaaaaabbccddeeeeeffggghhhiiiijjkklllmmmmnnnoooooppqqrrrsssssttuuuvvwwxxyyzz%"
 let each_epoch_num = 5
 let total_letters = 30
 let host_epoch_seconds = 5
@@ -42,7 +42,7 @@ export default function GamePage({roomID, host, name, playerNames}) {
         let n = 0
         let ret = []
         while(n < num) {
-            ret.push(letters[Math.floor(Math.random()*26)])
+            ret.push(letters[Math.floor(Math.random()*letters.length)])
             n += 1
         }
         return ret
