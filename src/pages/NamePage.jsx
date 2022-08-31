@@ -26,8 +26,8 @@ export default function NamePage(props) {
 
 
     return (
-        <div className={"name-page-container"}>
-            <TextField variant="outlined" label="Enter Screen Name Here!" onKeyPress={key_pressed} onChange={(e)=>props.setName(e.target.value)}/>
+        <div className={"word-cloud-image-bg"}>
+            <TextField sx={{"float": "left"}} variant="outlined" label="Enter Screen Name Here!" onKeyPress={key_pressed} onChange={(e)=>props.setName(e.target.value)}/>
         </div>
     );
 }

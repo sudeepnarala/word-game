@@ -27,7 +27,7 @@ export default function PageMuxer() {
     }
 
     return (
-        <div>
+        <div style={{"padding-top": "5vh"}}>
             {render_this}
         </div>
     );

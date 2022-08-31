@@ -3,22 +3,43 @@
 }
 
 .App-header {
-  background-color: #5ef2da;
-  min-height: 5vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 1em;
+  height: 8vh;
+  background-color: #9ED6F9;
+  /*This is what aligns it to the left (hugging the left line from grid template columns) */
+  justify-items: start;
+  align-items: start;
   color: white;
+  display: grid;
+  /*https://dev.to/luisaugusto/stop-using-fixed-headers-and-start-using-sticky-ones-1k30*/
+  position: sticky;
+  top: 0;
+
+  grid-template-columns: [first] 20vw [second] 75vw [third];
+  grid-template-rows: [first] 8vh [end];
 }
 
-.name-page-container {
-  padding-top: 2vh;
-  padding-left: 2vh;
-  float: left;
-  height: 100%;
-  display: table;
+.logo-item {
+  grid-column-start: first;
+  grid-row-start: first;
+  grid-column-end: second;
+  grid-row-end: end;
+}
+
+.description-item {
+  grid-column-start: second;
+  grid-row-start: first;
+  grid-column-end: third;
+  grid-row-end: end;
+}
+
+.word-cloud-image-bg {
+  /*https://www.freewordcloudgenerator.com/generatewordcloud*/
+  background: url("assets/word-cloud.svg");
+  height: 100vh;
+  width: 100vw;
+  background-repeat: no-repeat;
+  /*Had to use 100% instead of cover!*/
+  background-size: 100%;
 }
 
 .room-elements {
@@ -47,7 +68,7 @@
 .game-page-grid-container {
   display: grid;
   grid-template-columns: [leftmost] 40vw [middle1] 20vw [middle2] 40vw [end];
-  grid-template-rows: [topmost] 60vh [middle] 40vh [end];
+  grid-template-rows: [topmost] 50vh [middle] 40vh [end];
   justify-items: left; /* Moves all elements to top left of the box they are placed in */
 }
 
@@ -70,4 +91,16 @@
   grid-row-start: middle;
   grid-column-end: middle1;
   grid-row-end: end;
+}
+
+.game-stream-item {
+  grid-column-start: middle2;
+  grid-row-start: middle;
+  grid-column-end: end;
+  grid-row-end: end;
+}
+
+.game-stream {
+  overflow-y: scroll;
+  height: 30vh;
 }
