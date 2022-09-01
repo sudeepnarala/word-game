@@ -14,7 +14,7 @@ let total_letters = 60
 let host_epoch_seconds = 5
 let epoch_limit = total_letters/each_epoch_num-1
 
-export default function GamePage({roomID, host, name, playerNames}) {
+export default function GamePage({roomID, host, name, playerNames, minWordLength}) {
     let [currentLetters, setCurrentLetters] = useState([])
     let [hostEpoch, setHostEpoch] = useState(0)
     let [epoch, setEpoch] = useState(0)
@@ -77,6 +77,11 @@ export default function GamePage({roomID, host, name, playerNames}) {
 
     function tryWord(word) {
         word = word.toLowerCase()
+        if(word.length < minWordLength) {
+            let allMessages = [{name: "You", result: "not_enough_letters", word: word}, ...messages]
+            setMessages(allMessages)
+            return
+        }
         // Check to see letters exist
         let word_list_form = [...word]
         let word_dict = {}

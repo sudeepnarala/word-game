@@ -14,6 +14,7 @@
   position: sticky;
   top: 0;
 
+  z-index: 5;   /* Puts it on top */
   grid-template-columns: [first] 20vw [second] 75vw [third];
   grid-template-rows: [first] 8vh [end];
 }

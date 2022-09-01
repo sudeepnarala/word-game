@@ -11,6 +11,7 @@ export default function PageMuxer() {
     let [roomID, setRoomID] = useState("")
     let [host, setHost] = useState(false)
     let [playerNames, setPlayerNames] = useState("")
+    let [minWordLength, setMinWordLength] = useState(0)
 
     let render_this;
     if(page === Pages.name) {
@@ -20,10 +21,10 @@ export default function PageMuxer() {
         render_this = <RoomCreationPage setRoomID={setRoomID} setHost={setHost} setPage={setPage} name={name}/>
     }
     else if(page === Pages.room_waiting) {
-        render_this = <RoomWaitingPage roomID={roomID} host={host} setPage={setPage} name={name} setPlayerNames={setPlayerNames} />
+        render_this = <RoomWaitingPage roomID={roomID} host={host} setPage={setPage} name={name} setPlayerNames={setPlayerNames} setMinWordLength={setMinWordLength} />
     }
     else if(page === Pages.game) {
-        render_this = <GamePage roomID={roomID} host={host} setPage={setPage} name={name} playerNames={playerNames} />
+        render_this = <GamePage roomID={roomID} host={host} setPage={setPage} name={name} playerNames={playerNames} minWordLength={minWordLength} />
     }
 
     return (

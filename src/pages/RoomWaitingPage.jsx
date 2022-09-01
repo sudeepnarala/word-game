@@ -1,10 +1,10 @@
 import {useState} from "react";
 import {collection, doc, onSnapshot, query, setDoc} from "firebase/firestore";
-import {Button} from "@mui/material";
+import {Button, Slider, Typography} from "@mui/material";
 import {db, Pages} from "../word-game-firestore";
 import { useEffect } from "react";
 
-export default function RoomWaitingPage({ roomID, name, setPage, host, setPlayerNames }) {
+export default function RoomWaitingPage({ roomID, name, setPage, host, setPlayerNames, setMinWordLength }) {
 
     let [allNames, setAllNames] = useState([])
     // games collection, {room_code} document, setup collection, {name} document
@@ -59,6 +59,9 @@ export default function RoomWaitingPage({ roomID, name, setPage, host, setPlayer
         })
     }
 
+    function handleSliderChange(e) {
+        setMinWordLength(e.target.value)
+    }
 
     return (
         <div className={"game-page"}>
@@ -66,6 +69,11 @@ export default function RoomWaitingPage({ roomID, name, setPage, host, setPlayer
             <h3>
                 Room Code - {roomID}
             </h3>
+            <Typography>
+            Min Word Length
+            </Typography>
+            <br /><br />
+            <Slider sx={{width: "80vw"}} min={2} max={10} marks valueLabelDisplay="on" onChange={handleSliderChange} disableSwap />
             <h2>Players</h2>
             {allNames.map((name)=><h3>{name}</h3>)}
             {host ? <Button variant="outlined" onClick={start_game}>Start Game</Button> : <div />}

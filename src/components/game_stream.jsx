@@ -26,6 +26,13 @@ export default function GameStream({messages}) {
                         </Typography>
                     )
                 }
+                else if(result === "not_enough_letters") {
+                    return (
+                        <Typography color={"red"}>
+                            {name + " entered the word \"" + word+"\" which is shorter than the minimum size"}
+                        </Typography>
+                    )
+                }
             })}
         </Box>
     )
