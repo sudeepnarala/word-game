@@ -1,6 +1,6 @@
 import {TextField} from "@mui/material";
 import {db} from '../word-game-firestore';
-import { doc, setDoc, onSnapshot, query, collection } from "firebase/firestore";
+import { doc, setDoc, onSnapshot} from "firebase/firestore";
 import {useEffect, useRef, useState} from "react";
 // All english words
 import words from "an-array-of-english-words"
@@ -8,9 +8,9 @@ import Board from "../components/board";
 import Scores from "../components/scores";
 import GameStream from "../components/game_stream";
 
-let letters = "aaaaaaaabbccddeeeeeffggghhhiiiijjkklllmmmmnnnoooooppqqrrrsssssttuuuvvwwxxyyzz%"
+let letters = "aaaaaaaabbccddeeeeeffggghhhiiiijjkklllmmmmnnnoooooppqqrrrsssssttuuuvvwwxxyyzz"
 let each_epoch_num = 5
-let total_letters = 30
+let total_letters = 60
 let host_epoch_seconds = 5
 let epoch_limit = total_letters/each_epoch_num-1
 
